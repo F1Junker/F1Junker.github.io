@@ -1,9 +1,17 @@
-// Beispiel: sanftes Scrollen bei Klick auf Nav-Links
-document.querySelectorAll('header nav a').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    document.querySelector(link.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('header nav a').forEach(link => {
+
+    const href = link.getAttribute('href');
+    
+    if (href.startsWith("#")) {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+
   });
 });
